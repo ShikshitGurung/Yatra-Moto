@@ -40,12 +40,12 @@ export default function SearchBar() {
     <div className="relative">
       {/* Search Input */}
       <input
-        type="text"
-        placeholder="Search bikes..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        className="px-4 py-2 rounded-4xl bg-transparent border border-white text-black placeholder-gray-300 outline-none transition-all duration-300 focus:border focus:border-red-500 w-64"
-      />
+      type="text"
+      placeholder="Search bikes..."
+      value={searchTerm}
+      onChange={(e) => setSearchTerm(e.target.value)}
+      className="px-4 py-2 rounded-3xl bg-transparent border border-white text-black placeholder-gray-300 outline-none transition-all duration-300 focus:border focus:border-red-500 w-64"
+    />
 
       {/* Dropdown Results */}
       {searchTerm && (
