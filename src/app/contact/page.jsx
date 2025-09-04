@@ -2,9 +2,9 @@ import React from 'react'
 
 export default function page() {
   return (
-    <div className='min-h-screen bg-gradient-to-r from-black to-white/80 text-black'>
+    <div className='min-h-screen bg-gray-300 text-black'>
       <div className='flex justify-center items-center pt-20'>
-        <h1 className='text-5xl font-bold text-white'>Contact Us</h1>
+        <h1 className='text-5xl font-bold text-black'>Contact Us</h1>
       </div>
       <div className='flex justify-center items-center pt-10'>
         <form className='bg-white p-6 rounded-lg shadow-md w-full max-w-md'>

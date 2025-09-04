@@ -5,13 +5,13 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-r from-black to-white/80 text-black">
+    <div className="min-h-screen bg-gray-300 text-black">
       {/* Hero Section */}
       <div className="flex flex-col items-center pt-16 px-4 text-center">
-        <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-black">
           Welcome to Yatra<span className="text-red-600">Moto</span>
         </h1>
-        <h2 className="text-lg sm:text-xl md:text-2xl pt-3 font-semibold text-white">
+        <h2 className="text-lg sm:text-xl md:text-2xl pt-3 font-semibold text-black">
           GET YOUR DREAM BIKE!
         </h2>
       </div>

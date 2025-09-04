@@ -24,8 +24,8 @@ const bikes = [
 
 export default function Explore() {
   return (
-    <div className="min-h-screen w-full bg-gradient-to-r from-black to-white/80 py-10 px-6">
-      <h1 className="text-5xl font-bold text-center text-white mb-10">
+    <div className="min-h-screen w-full bg-gray-300 py-10 px-6">
+      <h1 className="text-5xl font-bold text-center text-black mb-10">
         All Available Bikes
       </h1>
 

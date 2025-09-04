@@ -5,7 +5,7 @@ import SearchBar from "./Searchbar";
 
 export default function Header() {
   return (
-    <div className="bg-gradient-to-r from-black to-white/80 text-white px-4 sm:px-8 md:px-20 py-4 flex flex-col md:flex-row md:justify-between md:items-center gap-4">
+    <div className="bg-gray-800 text-white px-4 sm:px-8 md:px-20 p-2 pt-4 flex flex-col md:flex-row md:justify-between md:items-center gap-4">
       {/* Logo */}
       <div className="text-xl sm:text-2xl font-bold text-center md:text-left">
         Yatra<span className="text-red-500">Moto</span>
@@ -18,7 +18,7 @@ export default function Header() {
 
       {/* Navigation */}
       <nav>
-        <ul className="flex justify-center md:justify-end text-black font-bold space-x-6 sm:space-x-10">
+        <ul className="flex justify-center md:justify-end text-white font-bold space-x-6 sm:space-x-10">
           <Link href="/" className="hover:underline">
             Home
           </Link>

@@ -39,7 +39,7 @@ export default function ProductDetailsPage1() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-black to-white/80">
+    <div className="min-h-screen bg-gray-300">
       <div className="w-180 max-w-3xl mx-auto p-2">
         <div className="bg-white text-black rounded-lg shadow-md p-6">
           <Image
@@ -58,7 +58,7 @@ export default function ProductDetailsPage1() {
 
             {/* ✅ Buy Button */}
             <Link href={`/buy/${product.id}`}>
-              <button className="mt-3 ml-3 px-18 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+              <button className="mt-3 ml-3 px-18 py-2 bg-green-600 text-white rounded hover:bg-green-700 cursor-pointer">
                 Buy
               </button>
             </Link>

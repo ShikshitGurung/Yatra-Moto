@@ -134,7 +134,7 @@ export default function BuyPage() {
     };
 
     return (
-        <div className='min-h-screen bg-gradient-to-r from-black to-white/80 text-black p-20'>
+        <div className='min-h-screen bg-gray-300 text-black p-20'>
 
             <div className="max-w-lg mx-auto bg-white rounded-lg p-6">
                 <h1 className="text-2xl font-bold mb-4">Buy {bike.name}</h1>
