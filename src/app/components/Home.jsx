@@ -18,7 +18,7 @@ export default function Home() {
 
       {/* Bike Logos */}
       <div className="flex flex-wrap justify-center gap-3 sm:gap-10 items-center pt-20 px-4">
-        <Link href="/product">
+        <Link href="/explore?limit=4">
           <Image
             src="/royalenfield.png"
             alt="Royal Enfield"
@@ -27,37 +27,41 @@ export default function Home() {
             className="cursor-pointer hover:scale-105 transition-transform"
           />
         </Link>
-        <Link href="/product1">
+
+        <Link href="/explore?start=5&end=8">
           <Image
             src="/ktmm.png"
-            alt="KTM"
+            alt="KTM Bikes"
             width={180}
             height={180}
             className="cursor-pointer hover:scale-105 transition-transform"
           />
         </Link>
-        <Link href="/product2">
+
+        <Link href="/explore?start=9&end=12">
           <Image
             src="/heroo.png"
-            alt="Hero"
+            alt="Hero Bikes"
             width={180}
             height={180}
             className="cursor-pointer hover:scale-105 transition-transform"
           />
         </Link>
-        <Link href="/product3">
+
+        <Link href="/explore?start=13&end=16">
           <Image
             src="/crossfire.png"
-            alt="Crossfire"
+            alt="Crossfire Bikes"
             width={180}
             height={180}
             className="cursor-pointer hover:scale-105 transition-transform"
           />
         </Link>
-        <Link href="/product4">
+
+        <Link href="/explore?start=17&end=20">
           <Image
             src="/tvss.webp"
-            alt="TVS"
+            alt="TVS Bikes"
             width={180}
             height={180}
             className="cursor-pointer hover:scale-105 transition-transform"
@@ -67,11 +71,12 @@ export default function Home() {
 
       {/* Explore Button */}
       <div className="flex justify-center items-center pt-12">
-        <Link href="/explore">
-          <button className="px-5 sm:px-6 py-2 sm:py-3 m-20 bg-red-600 text-white text-sm sm:text-base rounded-2xl shadow-lg hover:bg-red-700 transition">
-            Explore More
-          </button>
-
+        {/* ✅ CORRECTED: The <Link> component is now styled as the button */}
+        <Link 
+          href="/explore"
+          className="px-5 sm:px-6 py-2 sm:py-3 m-20 bg-red-600 text-white text-sm sm:text-base rounded-2xl shadow-lg hover:bg-red-700 transition"
+        >
+          Explore More
         </Link>
       </div>
     </div>

@@ -1,32 +1,32 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
+import { Toaster } from 'react-hot-toast';
+import { CartProvider } from "../context/CartContext";
+import { AuthProvider } from "../context/AuthContext";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Yatra Moto",
-  description: "Your best place to find your next motorcycle",
+  title: "YatraMoto - Your Dream Bike Awaits",
+  description: "Explore and buy the best motorcycles in Nepal.",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Header />
-        {children}
-      <Footer />
+      <body className={inter.className}>
+        <AuthProvider>
+          <CartProvider>
+            <Toaster position="top-center" reverseOrder={false} />
+            <div className="flex flex-col min-h-screen">
+              <Header />
+              <main className="flex-grow">{children}</main>
+              <Footer />
+            </div>
+          </CartProvider>
+        </AuthProvider>
       </body>
     </html>
   );

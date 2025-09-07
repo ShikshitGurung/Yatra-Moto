@@ -1,67 +1,63 @@
 "use client";
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 
-// ✅ Available bikes
-const bikes = [
-  { id: 1, name: "Hunter 350", price: 400000, path: "/product/1" },
-  { id: 2, name: "Classic 350", price: 500000, path: "/product/2" },
-  { id: 3, name: "Interceptor 650", price: 650000, path: "/product/3" },
-  { id: 4, name: "KTM Duke 200", price: 400000, path: "/product1/4" },
-  { id: 5, name: "KTM Duke 390", price: 500000, path: "/product1/5" },
-  { id: 6, name: "KTM RC 200", price: 650000, path: "/product1/6" },
-  { id: 7, name: "Hero Xpulse 125R", price: 400000, path: "/product2/7" },
-  { id: 8, name: "Xpulse 210", price: 500000, path: "/product2/8" },
-  { id: 9, name: "Mavrick 440", price: 650000, path: "/product2/9" },
-  { id: 10, name: "HJ 250", price: 400000, path: "/product3/10" },
-  { id: 11, name: "RM 250", price: 500000, path: "/product3/11" },
-  { id: 12, name: "RMZ 250", price: 650000, path: "/product3/12" },
-  { id: 13, name: "Apache RTR 200", price: 400000, path: "/product4/13" },
-  { id: 14, name: "TVs Ronin", price: 500000, path: "/product4/14" },
-  { id: 15, name: "TVS RR 310", price: 650000, path: "/product4/15" },
-];
+import { useState, useRef, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { bikes } from '../../data/bikes';
+import { FaSearch } from "react-icons/fa";
 
 export default function SearchBar() {
   const [searchTerm, setSearchTerm] = useState("");
   const router = useRouter();
+  const searchRef = useRef(null);
 
-  // Filter bikes by name
-  const filtered = bikes.filter((bike) =>
-    bike.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredBikes = searchTerm
+    ? bikes.filter((bike) =>
+        bike.name.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+    : [];
 
-  // When user clicks a bike
-  const handleSelect = (path) => {
+  const handleSelect = (bikeId) => {
     setSearchTerm("");
-    router.push(path); // navigate to product page
+    router.push(`/explore/${bikeId}`);
   };
 
-  return (
-    <div className="relative">
-      {/* Search Input */}
-      <input
-      type="text"
-      placeholder="Search bikes..."
-      value={searchTerm}
-      onChange={(e) => setSearchTerm(e.target.value)}
-      className="px-4 py-2 rounded-3xl bg-transparent border border-white text-black placeholder-gray-300 outline-none transition-all duration-300 focus:border focus:border-red-500 w-64"
-    />
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setSearchTerm("");
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
-      {/* Dropdown Results */}
+  return (
+    <div className="relative" ref={searchRef}>
+      <div className="relative">
+        <input
+          type="text"
+          placeholder="Search bikes..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="px-4 py-2 pl-10 rounded-full bg-gray-700 text-white placeholder-gray-400 outline-none transition-all duration-300 focus:bg-gray-600 w-48 sm:w-64"
+        />
+        <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+      </div>
+
       {searchTerm && (
-        <div className="absolute mt-2 w-full bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto z-50">
-          {filtered.length > 0 ? (
-            filtered.map((bike) => (
+        <div className="absolute mt-2 w-full bg-white border border-gray-300 rounded-lg shadow-lg max-h-80 overflow-y-auto z-50">
+          {filteredBikes.length > 0 ? (
+            filteredBikes.map((bike) => (
               <div
                 key={bike.id}
-                onClick={() => handleSelect(bike.path)}
-                className="px-4 py-2 hover:bg-gray-200 cursor-pointer text-black"
+                onClick={() => handleSelect(bike.id)}
+                className="px-4 py-3 hover:bg-gray-100 cursor-pointer text-black"
               >
                 {bike.name}
               </div>
             ))
           ) : (
-            <div className="px-4 py-2 text-red-500">Bike is unavailable ❌</div>
+            <div className="px-4 py-3 text-gray-500">No bikes found.</div>
           )}
         </div>
       )}
