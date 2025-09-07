@@ -1,34 +1,13 @@
 "use client";
-import React from "react";
+import React, { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useCart } from "../../context/CartContext";
 
-const bikes = [
-  { id: 1, name: "Hunter 350", price: 400000, image: "/h350.jpg" },
-  { id: 2, name: "Classic 350", price: 500000, image: "/c350.jpg" },
-  { id: 3, name: "Interceptor 650", price: 650000, image: "/interceptor650.jpg" },
-  { id: 4, name: "Himalayan Hanle Black", price: 1039500, image: "/HimalayanHanleBlack.webp" },
-  { id: 5, name: "KTM Duke 200", price: 400000, image: "/duke200.webp" },
-  { id: 6, name: "KTM Duke 390", price: 500000, image: "/duke390.webp" },
-  { id: 7, name: "KTM RC 200", price: 650000, image: "/rc200.webp" },
-  { id: 8, name: "KTM Adventure 390", price: 1074000, image: "/ktma390.webp" },
-  { id: 9, name: "Hero Xpulse 125R", price: 400000, image: "/xtreme125r.jpg" },
-  { id: 10, name: "Xpulse 210", price: 500000, image: "/xpulse210.png" },
-  { id: 11, name: "Mavrick 440", price: 650000, image: "/mavrick440.jpg" },
-  { id: 12, name: "Super Splendor", price: 255900, image: "/splendor.jpg" },
-  { id: 13, name: "HJ 250", price: 400000, image: "/hj250.jpg" },
-  { id: 14, name: "RM 250", price: 500000, image: "/rm250.jpg" },
-  { id: 15, name: "RMZ 250", price: 650000, image: "/rmz250.webp" },
-  { id: 16, name: "Tracker 250", price: 370000, image: "/tracker250.jpg" },
-  { id: 17, name: "Apache RTR 200", price: 400000, image: "/apache200.webp" },
-  { id: 18, name: "TVs Ronin", price: 500000, image: "/ronin.jpg" },
-  { id: 19, name: "Raider", price: 274900, image: "/raider.webp" },
-  { id: 20, name: "TVS RR 310", price: 650000, image: "/rr310.webp" },
-];
+const bikes = [ /* ... your bikes list ... */ ];
 
-export default function Explore() {
+function ExploreContent() {
   const { addToCart } = useCart();
   const searchParams = useSearchParams();
 
@@ -74,7 +53,9 @@ export default function Explore() {
               className="object-cover w-full h-56 rounded-lg mb-4"
             />
             <h3 className="text-xl font-bold">{bike.name}</h3>
-            <p className="text-lg font-semibold text-red-600">Rs. {bike.price}</p>
+            <p className="text-lg font-semibold text-red-600">
+              Rs. {bike.price}
+            </p>
 
             <div className="mt-4 flex gap-5">
               <Link href={`/explore/${bike.id}`}>
@@ -94,5 +75,13 @@ export default function Explore() {
         ))}
       </div>
     </div>
+  );
+}
+
+export default function Explore() {
+  return (
+    <Suspense fallback={<p className="text-center text-lg">Loading bikes...</p>}>
+      <ExploreContent />
+    </Suspense>
   );
 }

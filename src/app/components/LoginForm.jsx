@@ -1,11 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useAuth } from '../../context/AuthContext';
 
-export default function LoginForm() {
+function LoginForm() {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const router = useRouter();
@@ -32,10 +32,14 @@ export default function LoginForm() {
 
   return (
     <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-md">
-      <h2 className="text-3xl font-bold text-center text-gray-900 mb-6">Login to Your Account</h2>
+      <h2 className="text-3xl font-bold text-center text-gray-900 mb-6">
+        Login to Your Account
+      </h2>
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700">Email Address</label>
+          <label className="block text-sm font-medium text-gray-700">
+            Email Address
+          </label>
           <input
             type="email"
             name="email"
@@ -45,7 +49,9 @@ export default function LoginForm() {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700">Password</label>
+          <label className="block text-sm font-medium text-gray-700">
+            Password
+          </label>
           <input
             type="password"
             name="password"
@@ -63,11 +69,22 @@ export default function LoginForm() {
         </button>
       </form>
       <p className="text-center text-sm text-gray-600 mt-4">
-        Don't have an account?{' '}
-        <Link href="/signup" className="font-medium text-green-600 hover:text-green-500">
+        Don&apos;t have an account?{' '}
+        <Link
+          href="/signup"
+          className="font-medium text-green-600 hover:text-green-500"
+        >
           Sign Up
         </Link>
       </p>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<p className="text-center">Loading login form...</p>}>
+      <LoginForm />
+    </Suspense>
   );
 }
